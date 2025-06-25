@@ -1,28 +1,100 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { toggleMenu } from '../utils/sideSlice'; // your redux action to toggle sidebar
+import youtube from '../assets/youtube.png'; // your YouTube logo image
+import menuIcon from '../assets/menu.png'; // your menu icon image
 const Sidebar = () => {
-  const menu=useSelector((store)=>store.menu.isMenuOpen);
-  if (!menu) return null;
-  return (
-    <div className='col-span-1 bg-black text-white h-[91.2vh]'>
-      <h1>
-        <ul>
-          <li>Home</li>
-          <li>Shorts</li>
-          <li>Subscriptions</li>
-          <li>You</li>
-        </ul>
-        <ul>
-          <li>History</li>
-          <li>Playlists</li>
-          <li>Your Videos</li>
-          <li>Watch Later</li>
-          <li>Liked Videos</li>
-        </ul>
-      </h1>
-    </div>
-  )
-}
+  const menu = useSelector(store => store.menu.isMenuOpen);
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
-export default Sidebar
+  // If menu is closed, don't render sidebar
+  if (!menu) return null;
+
+  // Fixed sidebar style for Home page
+  const fixedSidebarClasses = 'col-span-2 bg-black text-white h-[91.2vh] p-4 w-60';
+
+  // Overlay sidebar styles for other pages
+  const overlaySidebarClasses = `
+    fixed top-0 left-0 z-50 h-full w-60 bg-black text-white p-4
+    shadow-lg
+  `;
+
+  // Overlay backdrop to close sidebar on clicking outside
+  const overlayBackdrop = (
+    <div
+      onClick={() => dispatch(toggleMenu(false))}
+      className="fixed inset-0 bg-black opacity-50 z-40"
+    />
+  );
+
+  return (
+    <>
+      {isHome ? (
+        // Sidebar takes space on Home page
+        <div className={fixedSidebarClasses}>
+          <SidebarContent />
+        </div>
+      ) : (
+        //  onClick={() => dispatch(toggleMenu(false))}
+        <>
+          {overlayBackdrop}
+          <div className=  {overlaySidebarClasses}>
+         <div className="flex col-span-3  items-center">
+                   <img
+                    onClick={() => dispatch(toggleMenu(false))} src={menuIcon}
+                     alt="menu"
+                     className="w-8 p-1 ml-1 mr-4 rounded-full cursor-pointer hover:bg-gray-800 "
+                   />
+                   <img src={youtube} alt="logo" className="w-28" />
+                 </div>
+            <SidebarContent />
+          </div>
+        </>
+      )}
+    </>
+  );
+};
+
+const SidebarContent = () => (
+  <>
+    <ul className="space-y-2 text-sm border-b border-gray-700 pb-4">
+      <Link to="/">
+        <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+          🏠 <span>Home</span>
+        </li>
+      </Link>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        🎬 <span>Shorts</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        📺 <span>Subscriptions</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        👤 <span>You</span>
+      </li>
+    </ul>
+
+    <ul className="space-y-2 text-sm mt-4">
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        🕒 <span>History</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        📃 <span>Playlists</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        🎥 <span>Your Videos</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        ⏳ <span>Watch Later</span>
+      </li>
+      <li className="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-800 cursor-pointer">
+        ❤️ <span>Liked Videos</span>
+      </li>
+    </ul>
+  </>
+);
+
+export default Sidebar;

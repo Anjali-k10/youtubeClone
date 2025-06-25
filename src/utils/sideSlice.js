@@ -11,9 +11,12 @@ const sideSlice = createSlice({
      toggleMenu: (state, action) => {
        state.isMenuOpen= !state.isMenuOpen;
       },
+      closeMenu:(state)=>{
+        state.isMenuOpen = false;
+      }
     
     }
 });
 
-export const { toggleMenu  } = sideSlice.actions;
+export const { toggleMenu ,closeMenu } = sideSlice.actions;
 export default sideSlice.reducer;

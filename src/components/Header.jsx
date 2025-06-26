@@ -5,7 +5,7 @@ import defaultProfile from "../assets/defaultProfile.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/sideSlice";
 import { Youtube_Search_Api_Url } from "../utils/constant";
-import { catchResults } from "../utils/SearchSlice";
+import { catchResults } from "../utils/searchSlice";
 
 const Header = () => {
   const menuIcon = useSelector((store) => store.menu.isMenuOpen);

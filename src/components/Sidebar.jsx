@@ -1,8 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { toggleMenu } from '../utils/sideSlice'; 
-import youtube from '../assets/youtube.png'; 
+import { toggleMenu } from '../utils/sideSlice';  
 import menuIcon from '../assets/menu.png'; 
 const Sidebar = () => {
   const menu = useSelector(store => store.menu.isMenuOpen);
@@ -48,7 +47,7 @@ const Sidebar = () => {
                      alt="menu"
                      className="w-8 p-1 ml-1 mr-4 rounded-full cursor-pointer hover:bg-gray-800 "
                    />
-                   <img src={youtube} alt="logo" className="w-28" />
+                   <img src="/youtube.png" alt="logo" className="w-28" />
                  </div>
             <SidebarContent />
           </div>

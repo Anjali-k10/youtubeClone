@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import youtube from "../assets/youtube.png";
+// import youtube from "../assets/youtube.png";
 import menu from "../assets/menu.png";
 import defaultProfile from "../assets/defaultProfile.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +62,7 @@ const Header = () => {
             alt="menu"
             className="w-8 mr-4 rounded-full cursor-pointer hover:bg-gray-800 p-1"
           />
-          <img src={youtube} alt="logo" className="w-28" />
+          <img src="/youtube.png" alt="logo" className="w-28" />
         </div>
 
        

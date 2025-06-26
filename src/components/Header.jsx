@@ -52,9 +52,9 @@ const Header = () => {
 
   return (
     <div className="bg-black shadow-md text-white">
-      {/* Header container */}
+    
       <div className="grid grid-cols-12 items-center px-4 py-2">
-        {/* Logo and menu */}
+      
         <div className="flex col-span-3 items-center">
           <img
             onClick={handleToggleMenu}
@@ -65,7 +65,7 @@ const Header = () => {
           <img src={youtube} alt="logo" className="w-28" />
         </div>
 
-        {/* Search box */}
+       
         <div className="col-span-6 flex justify-center relative">
           <div className="w-[500px] relative">
             <div className="flex">
@@ -83,7 +83,7 @@ const Header = () => {
               </button>
             </div>
 
-            {/* Suggestion dropdown */}
+            
             {showSuggestions && suggestions.length > 0 && (
               <div className="absolute top-full left-4 w-10/12 mt-1 bg-black rounded-lg border border-gray-700 shadow-xl z-50">
                 <ul>
@@ -101,7 +101,7 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Profile */}
+       
         <div className="col-span-3 flex justify-end">
           <img
             src={defaultProfile}

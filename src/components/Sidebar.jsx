@@ -1,28 +1,28 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import { toggleMenu } from '../utils/sideSlice'; // your redux action to toggle sidebar
-import youtube from '../assets/youtube.png'; // your YouTube logo image
-import menuIcon from '../assets/menu.png'; // your menu icon image
+import { toggleMenu } from '../utils/sideSlice'; 
+import youtube from '../assets/youtube.png'; 
+import menuIcon from '../assets/menu.png'; 
 const Sidebar = () => {
   const menu = useSelector(store => store.menu.isMenuOpen);
   const dispatch = useDispatch();
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  // If menu is closed, don't render sidebar
+ 
   if (!menu) return null;
 
-  // Fixed sidebar style for Home page
+ 
   const fixedSidebarClasses = 'col-span-2 bg-black text-white h-[91.2vh] p-4 w-60';
 
-  // Overlay sidebar styles for other pages
+  
   const overlaySidebarClasses = `
     fixed top-0 left-0 z-50 h-full w-60 bg-black text-white p-4
     shadow-lg
   `;
 
-  // Overlay backdrop to close sidebar on clicking outside
+
   const overlayBackdrop = (
     <div
       onClick={() => dispatch(toggleMenu(false))}
@@ -33,12 +33,12 @@ const Sidebar = () => {
   return (
     <>
       {isHome ? (
-        // Sidebar takes space on Home page
+    
         <div className={fixedSidebarClasses}>
           <SidebarContent />
         </div>
       ) : (
-        //  onClick={() => dispatch(toggleMenu(false))}
+        
         <>
           {overlayBackdrop}
           <div className=  {overlaySidebarClasses}>

@@ -14,7 +14,7 @@ const Body = () => {
       <Header />
 
       <div className={`${isWatchPage ? 'relative' : 'grid grid-cols-12'} h-[calc(100vh-56px)]`}>
-        {/* Sidebar logic */}
+        
         {isWatchPage ? (
           isMenuOpen && (
             <div className="absolute z-10 bg-black h-full w-60">
@@ -25,7 +25,7 @@ const Body = () => {
           <Sidebar />
         )}
 
-        {/* Main Content */}
+      
         <div
           className={`${
             isWatchPage ? 'w-full' : 'col-span-10'
